@@ -6,6 +6,7 @@
     "dist": "node fuse dist"
   },
   "dependencies": {
+    "ramda": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "s-js": "^0.4.5"
