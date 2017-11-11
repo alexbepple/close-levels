@@ -2,7 +2,7 @@ import * as React from 'react'
 import s from 's-js'
 import * as r from 'ramda'
 
-const quotes = s.data([])
+export const quotes = s.data([])
 
 interface Quote {
   symbol: string
