@@ -1,0 +1,18 @@
+{
+  "name": "react-example",
+  "main": "index.js",
+  "scripts": {
+    "start": "node fuse",
+    "dist": "node fuse dist"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "fuse-box": "^2.2.3",
+    "tslib": "^1.7.1",
+    "typescript": "^2.1.4",
+    "uglify-js": "^3.0.15"
+  }
+}
