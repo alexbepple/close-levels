@@ -1,8 +1,10 @@
 import * as React from 'react'
 import {render} from 'react-dom'
 import s from 's-js'
+
 import {CurrentQuotes} from './quotes'
 import {CurrentLevels} from './levels'
+import './levels-import'
 
 const App = () => <div>
   <div>

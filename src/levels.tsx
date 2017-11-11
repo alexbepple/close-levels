@@ -11,11 +11,7 @@ interface Level {
   rate: number
 }
 
-const initialLevels: Level[] = [
-  { asset: 'EURUSD', rate: 1.19 },
-  { asset: 'EURUSD', rate: 1.18 }
-]
-const levels = s.data(initialLevels)
+export const levels = s.data([])
 
 interface ContextualizedLevel extends Level {
   distanceInPercent: number
