@@ -6,6 +6,7 @@ const {
   Sparky
 } = require('fuse-box');
 
+const entrypoint = 'index.tsx'
 let fuse, app, vendor, isProduction;
 
 Sparky.task('config', () => {
@@ -30,10 +31,10 @@ Sparky.task('config', () => {
     ]
   });
   // vendor
-  vendor = fuse.bundle('vendor').instructions('~ index.jsx');
+  vendor = fuse.bundle('vendor').instructions('~ ' + entrypoint);
 
   // bundle app
-  app = fuse.bundle('app').instructions('> [index.jsx]');
+  app = fuse.bundle('app').instructions(`> [${entrypoint}]`);
 });
 
 Sparky.task('default', ['clean', 'config'], () => {
