@@ -1,6 +1,11 @@
 import * as React from 'react'
 import {render} from 'react-dom'
+import s from 's-js'
 
-const App = () => 'Hello World!'
+const a = s.data('Hello World!')
 
-render(<App />, document.getElementById('root'))
+const App = () => <p>{a()}</p>
+
+s.root(() => s(
+  () => render(<App />, document.getElementById('root'))
+))
