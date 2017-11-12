@@ -24,8 +24,17 @@ const App = () => <div>
   </div>
 </div>
 
-s.root(() => s.on(
-  // @ts-ignore
-  [levels, quotes],
-  () => render(<App />, document.getElementById('root'))
-))
+s.root(() => {
+  s.on(
+    // @ts-ignore
+    [levels, quotes],
+    () => render(<App />, document.getElementById('root'))
+  )
+
+  if (localStorage.levels) {
+    levels(JSON.parse(localStorage.levels))
+  }
+  s(
+    () => localStorage.levels = JSON.stringify(levels())
+  )
+})
