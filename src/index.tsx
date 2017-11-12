@@ -6,7 +6,6 @@ import {CurrentQuotes, quotes} from './quotes'
 import {updateQuotes} from './quotes-workflows'
 import {CurrentLevels, levels} from './levels'
 import {LevelsPasteBox} from './levels-import'
-import './levels-import'
 
 updateQuotes()
 

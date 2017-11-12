@@ -20,4 +20,5 @@ const parseLevels = r.pipe(
   }))
 )
 
-export const LevelsPasteBox = () => <textarea onChange={e => levels(parseLevels(e.target.value))} />
+export const LevelsPasteBox = () =>
+  <textarea onChange={e => levels(parseLevels(e.target.value))} />
