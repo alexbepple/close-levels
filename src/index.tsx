@@ -4,6 +4,7 @@ import s from 's-js'
 
 import {CurrentQuotes} from './quotes'
 import {CurrentLevels} from './levels'
+import {LevelsPasteBox} from './levels-import'
 import './levels-import'
 
 const App = () => <div>
@@ -14,6 +15,9 @@ const App = () => <div>
   <div>
     <h2>Levels</h2>
     <CurrentLevels />
+  </div>
+  <div>
+    <LevelsPasteBox />
   </div>
 </div>
 
