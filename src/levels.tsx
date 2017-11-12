@@ -26,10 +26,8 @@ const renderLevel = (level: ContextualizedLevel) =>
     {`${level.asset}: ${level.rate} (${level.distanceInPercent}%)`}
   </li>
 
-const getDistanceInPercent = r.pipe(
-  x => q.div(x.rate, x.price),
-  q.sub(r.__, 1),
-  q.abs,
+export const getDistanceInPercent = r.pipe(
+  (x: ContextualizedLevel) => q.relativeDistanceFrom(x.price, x.rate),
   q.toPercent,
   q.round(1),
   q.valueOf

@@ -47,5 +47,10 @@ export const wAvg = (weights: FractionInput[], values: FractionInput[]) => div(
   sum(weights)
 )
 export const toPercent = mul(r.__, 100)
+export const relativeDistanceFrom = r.pipe(
+  (base, x) => div(x, base),
+  sub(r.__, 1),
+  abs
+)
 
 export const gt = r.curry((a: FractionInput, b: FractionInput) => compare(a, b) > 0)
