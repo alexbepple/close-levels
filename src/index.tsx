@@ -2,9 +2,9 @@ import * as React from 'react'
 import {render} from 'react-dom'
 import s from 's-js'
 
-import {CurrentQuotes} from './quotes'
+import {CurrentQuotes, quotes} from './quotes'
 import {updateQuotes} from './quotes-workflows'
-import {CurrentLevels} from './levels'
+import {CurrentLevels, levels} from './levels'
 import {LevelsPasteBox} from './levels-import'
 import './levels-import'
 
@@ -24,6 +24,7 @@ const App = () => <div>
   </div>
 </div>
 
-s.root(() => s(
+s.root(() => s.on(
+  [levels, quotes],
   () => render(<App />, document.getElementById('root'))
 ))
