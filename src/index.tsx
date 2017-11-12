@@ -25,6 +25,7 @@ const App = () => <div>
 </div>
 
 s.root(() => s.on(
+  // @ts-ignore
   [levels, quotes],
   () => render(<App />, document.getElementById('root'))
 ))

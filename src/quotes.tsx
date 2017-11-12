@@ -1,5 +1,5 @@
 import * as React from 'react'
-import s from 's-js'
+import s, {DataSignal} from 's-js'
 import * as r from 'ramda'
 
 import {Quote} from './Quote'
