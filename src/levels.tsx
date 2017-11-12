@@ -1,6 +1,7 @@
 import * as React from 'react'
 import s from 's-js'
 import * as r from 'ramda'
+import * as q from './q'
 
 import {joinRight} from './join'
 
@@ -20,7 +21,12 @@ interface ContextualizedLevel extends Level, Quote {
 
 const renderLevel = (q: ContextualizedLevel) => <li key={q.asset+q.rate}>{`${q.asset}: ${q.rate} (${q.distanceInPercent})`}</li>
 
-const getDistanceInPercent = x => Math.abs(x.rate / x.price - 1)
+const getDistanceInPercent = r.pipe(
+  x => q.div(x.rate, x.price),
+  q.sub(r.__, 1),
+  q.abs,
+  q.valueOf
+)
 
 const contextualize = joinRight((x: Quote) => x.symbol, (x: Level) => x.asset)
 
