@@ -8,6 +8,8 @@ import {CurrentLevels} from './levels'
 import {LevelsPasteBox} from './levels-import'
 import './levels-import'
 
+updateQuotes()
+
 const App = () => <div>
   <div>
     <h2>Rates</h2>
@@ -25,5 +27,3 @@ const App = () => <div>
 s.root(() => s(
   () => render(<App />, document.getElementById('root'))
 ))
-
-updateQuotes()
