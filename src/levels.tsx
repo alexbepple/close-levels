@@ -19,8 +19,12 @@ interface ContextualizedLevel extends Level, Quote {
   distanceInPercent: number
 }
 
-const renderLevel = (q: ContextualizedLevel) =>
-  <li key={q.asset+q.rate}>{`${q.asset}: ${q.rate} (${q.distanceInPercent}%)`}</li>
+const danger = { color: 'red' }
+const getStyle = r.ifElse(x => q.gt(1, x.distanceInPercent), r.always(danger), r.always(null))
+const renderLevel = (level: ContextualizedLevel) =>
+  <li style={getStyle(level)} key={level.asset+level.rate}>
+    {`${level.asset}: ${level.rate} (${level.distanceInPercent}%)`}
+  </li>
 
 const getDistanceInPercent = r.pipe(
   x => q.div(x.rate, x.price),
