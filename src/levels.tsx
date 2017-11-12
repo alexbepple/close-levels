@@ -5,6 +5,7 @@ import * as r from 'ramda'
 import {joinRight} from './join'
 
 import {quotes} from './quotes'
+import {Quote} from './Quote'
 
 interface Level {
   readonly asset: string

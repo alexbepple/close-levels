@@ -3,6 +3,7 @@ import {render} from 'react-dom'
 import s from 's-js'
 
 import {CurrentQuotes} from './quotes'
+import {updateQuotes} from './quotes-workflows'
 import {CurrentLevels} from './levels'
 import {LevelsPasteBox} from './levels-import'
 import './levels-import'
@@ -24,3 +25,5 @@ const App = () => <div>
 s.root(() => s(
   () => render(<App />, document.getElementById('root'))
 ))
+
+updateQuotes()

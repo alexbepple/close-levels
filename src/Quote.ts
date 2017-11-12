@@ -1,4 +1,4 @@
-interface Quote {
+export interface Quote {
   readonly symbol: string
   readonly price: number
   readonly bid: number

@@ -3,7 +3,7 @@
   "scripts": {
     "start": "node fuse",
     "dist": "node fuse dist",
-    "test": "mocha"
+    "test": "TS_NODE_PROJECT=./src mocha"
   },
   "dependencies": {
     "ramda": "^0.25.0",

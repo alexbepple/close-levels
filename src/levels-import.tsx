@@ -4,7 +4,7 @@ import * as r from 'ramda'
 import { levels } from './levels'
 
 const getAssetName = r.take(6)
-const getRate = r.pipe(
+export const getRate = r.pipe(
   r.match(/at.*/), r.head,
   r.match(/\d+,\d+/), r.head,
   r.replace(',', '.'),
