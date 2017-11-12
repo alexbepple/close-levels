@@ -1,6 +1,8 @@
 import * as React from 'react'
 import {render} from 'react-dom'
 import s from 's-js'
+import * as localForage from 'localforage'
+import * as r from 'ramda'
 
 import {CurrentQuotes, quotes} from './quotes'
 import {updateQuotes} from './quotes-workflows'
@@ -30,10 +32,11 @@ s.root(() => {
     () => render(<App />, document.getElementById('root'))
   )
 
-  if (localStorage.levels) {
-    levels(JSON.parse(localStorage.levels))
-  }
+  const levelsStorageKey = 'levels'
+  localForage.getItem(levelsStorageKey).then(
+    r.when(r.complement(r.isNil), levels)
+  )
   s(
-    () => localStorage.levels = JSON.stringify(levels())
+    () => localForage.setItem(levelsStorageKey, levels())
   )
 })
