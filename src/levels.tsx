@@ -13,7 +13,7 @@ interface Level {
 
 export const levels = s.data([])
 
-interface ContextualizedLevel extends Level {
+interface ContextualizedLevel extends Level, Quote {
   distanceInPercent: number
 }
 
@@ -21,8 +21,10 @@ const renderLevel = (q: ContextualizedLevel) => <li key={q.asset+q.rate}>{`${q.a
 
 const getDistanceInPercent = x => Math.abs(x.rate / x.price - 1)
 
+const contextualize = joinRight((x: Quote) => x.symbol, (x: Level) => x.asset)
+
 const sortByDistanceFromPrice = r.pipe(
-  joinRight(r.prop('symbol'), r.prop('asset')),
+  contextualize,
   r.map(r.converge(r.assoc('distanceInPercent'), [getDistanceInPercent, r.identity])),
   r.sortBy(r.prop('distanceInPercent'))
 )

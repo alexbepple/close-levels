@@ -4,14 +4,6 @@ import * as r from 'ramda'
 
 export const quotes = s.data([])
 
-interface Quote {
-  readonly symbol: string
-  readonly price: number
-  readonly bid: number
-  readonly ask: number
-  readonly timestamp: number
-}
-
 const renderQuote = (q: Quote) => <li key={q.symbol}>{q.symbol + ': ' + q.price}</li>
 
 export const CurrentQuotes = () => <ul>{r.map(renderQuote, quotes())}</ul>
