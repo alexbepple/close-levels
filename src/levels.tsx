@@ -7,8 +7,8 @@ import {joinRight} from './join'
 import {quotes} from './quotes'
 
 interface Level {
-  asset: string
-  rate: number
+  readonly asset: string
+  readonly rate: number
 }
 
 export const levels = s.data([])

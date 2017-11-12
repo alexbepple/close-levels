@@ -5,11 +5,11 @@ import * as r from 'ramda'
 export const quotes = s.data([])
 
 interface Quote {
-  symbol: string
-  price: number
-  bid: number
-  ask: number
-  timestamp: number
+  readonly symbol: string
+  readonly price: number
+  readonly bid: number
+  readonly ask: number
+  readonly timestamp: number
 }
 
 const renderQuote = (q: Quote) => <li key={q.symbol}>{q.symbol + ': ' + q.price}</li>
