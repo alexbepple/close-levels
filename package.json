@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "start": "node fuse",
-    "dist": "node fuse dist"
+    "dist": "node fuse dist",
+    "test": "mocha"
   },
   "dependencies": {
     "ramda": "^0.25.0",
@@ -11,7 +12,11 @@
     "s-js": "^0.4.5"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.44",
     "fuse-box": "^2.2.3",
+    "hamjest": "^3.1.0",
+    "mocha": "^4.0.1",
+    "ts-node": "^3.3.0",
     "tslib": "^1.7.1",
     "typescript": "^2.1.4",
     "uglify-js": "^3.0.15"
