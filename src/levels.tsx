@@ -19,7 +19,7 @@ interface ContextualizedLevel extends Level {
 
 const renderLevel = (q: ContextualizedLevel) => <li key={q.asset+q.rate}>{`${q.asset}: ${q.rate} (${q.distanceInPercent})`}</li>
 
-const getDistanceInPercent = x => Math.abs(x.price / x.rate - 1)
+const getDistanceInPercent = x => Math.abs(x.rate / x.price - 1)
 
 const sortByDistanceFromPrice = r.pipe(
   joinRight(r.prop('symbol'), r.prop('asset')),
