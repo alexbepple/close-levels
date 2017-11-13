@@ -327,6 +327,10 @@ chokidar@^1.6.1:
   optionalDependencies:
     fsevents "^1.0.0"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cli-cursor@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-2.1.0.tgz#b35dac376479facc3e94747d41d0d0f5238ffcb5"
@@ -1775,6 +1779,12 @@ react-dom@^16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-table@^6.7.4:
+  version "6.7.4"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.7.4.tgz#cd23e15d437034bf2374e9c8d343e1b4e1960e4f"
+  dependencies:
+    classnames "^2.2.5"
 
 react@^16.0.0:
   version "16.1.0"

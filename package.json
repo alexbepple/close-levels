@@ -11,6 +11,7 @@
     "ramda": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-table": "^6.7.4",
     "s-js": "^0.4.5"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import * as React from 'react'
 import s, {DataSignal} from 's-js'
 import * as r from 'ramda'
 import * as q from './q'
+import ReactTable from 'react-table'
 
 import {joinRight} from './join'
 
@@ -19,13 +20,6 @@ interface ContextualizedLevel extends Level, Quote {
   distanceInPercent: number
 }
 
-const danger = { color: 'red' }
-const getStyle = r.ifElse(x => q.gt(1, x.distanceInPercent), r.always(danger), r.always(null))
-const renderLevel = (level: ContextualizedLevel) =>
-  <li style={getStyle(level)} key={level.asset+level.rate}>
-    {`${level.asset}: ${level.rate} (${level.distanceInPercent}%)`}
-  </li>
-
 export const getDistanceInPercent = r.pipe((x: ContextualizedLevel) =>
   q.relativeDistanceFrom(r.defaultTo(x.rate, x.price), x.rate),
   q.toPercent,
@@ -41,4 +35,20 @@ const sortByDistanceFromPrice = r.pipe(
   r.sortBy(r.prop('distanceInPercent'))
 )
 
-export const CurrentLevels = () => <ul>{r.map(renderLevel, sortByDistanceFromPrice(quotes(), levels()))}</ul>
+const columns = [
+  { Header: 'Asset', accessor: 'asset' },
+  { Header: 'Level', accessor: 'rate' },
+  { Header: 'Current', accessor: 'price' },
+  { Header: 'Distance', accessor: 'distanceInPercent', Cell: props => props.value + '%'}
+]
+
+const danger = { color: 'red' }
+const getStyle = r.ifElse(x => q.gt(1, x.distanceInPercent), r.always(danger), r.always(null))
+
+export const CurrentLevels = () => <ReactTable
+  data={sortByDistanceFromPrice(quotes(), levels())}
+  columns={columns}
+  showPagination={false}
+  pageSize={r.length(levels())}
+  getTrProps={(state, rowinfo) => ({ style: getStyle(rowinfo.original) })}
+/>
