@@ -13,12 +13,9 @@ interface Level {
   readonly asset: string
   readonly rate: number
 }
+interface ContextualizedLevel extends Level, Quote {}
 
 export const levels = s.data([])
-
-interface ContextualizedLevel extends Level, Quote {
-  distanceInPercent: number
-}
 
 export const getDistanceInPercent = r.pipe((x: ContextualizedLevel) =>
   q.relativeDistanceFrom(r.defaultTo(x.rate, x.price), x.rate),
@@ -29,25 +26,23 @@ export const getDistanceInPercent = r.pipe((x: ContextualizedLevel) =>
 
 const contextualize = joinRight((x: Quote) => x.symbol, (x: Level) => x.asset)
 
-const sortByDistanceFromPrice = r.pipe(
-  contextualize,
-  r.map(r.converge(r.assoc('distanceInPercent'), [getDistanceInPercent, r.identity])),
-  r.sortBy(r.prop('distanceInPercent'))
-)
-
+const columnIdDistance = 'distance'
 const columns = [
   { Header: 'Asset', accessor: 'asset' },
   { Header: 'Level', accessor: 'rate' },
   { Header: 'Current', accessor: 'price' },
-  { Header: 'Distance', accessor: 'distanceInPercent', Cell: props => props.value + '%'}
+  { Header: 'Distance', id: columnIdDistance, accessor: getDistanceInPercent,
+    Cell: props => props.value + '%'}
 ]
 
 const danger = { color: 'red' }
-const getStyle = r.ifElse(x => q.gt(1, x.distanceInPercent), r.always(danger), r.always(null))
+const getStyle = r.ifElse(
+  x => q.gt(1, getDistanceInPercent(x)), r.always(danger), r.always(null))
 
 export const CurrentLevels = () => <ReactTable
-  data={sortByDistanceFromPrice(quotes(), levels())}
+  data={contextualize(quotes(), levels())}
   columns={columns}
+  defaultSorted={[{id: columnIdDistance, asc: true}]}
   showPagination={false}
   pageSize={r.length(levels())}
   getTrProps={(state, rowinfo) => ({ style: getStyle(rowinfo.original) })}
